@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1799290E72328F60B4D545E1 /* Pods_LifeHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6144C9BFDC02899F95E48F /* Pods_LifeHub.framework */; };
+		1F57E6CE2221250F0072869D /* MainListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F57E6CD2221250F0072869D /* MainListCell.swift */; };
 		1F7D718B22197CE400F01D6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D718A22197CE400F01D6D /* AppDelegate.swift */; };
-		1F7D718D22197CE400F01D6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D718C22197CE400F01D6D /* ViewController.swift */; };
+		1F7D718D22197CE400F01D6D /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D718C22197CE400F01D6D /* MainListViewController.swift */; };
 		1F7D719022197CE400F01D6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7D718E22197CE400F01D6D /* Main.storyboard */; };
 		1F7D719222197CE500F01D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F7D719122197CE500F01D6D /* Assets.xcassets */; };
 		1F7D719522197CE500F01D6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7D719322197CE500F01D6D /* LaunchScreen.storyboard */; };
+		1FA5437E22197F630038BF04 /* DreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5437D22197F630038BF04 /* DreamModel.swift */; };
+		1FA54382221985B90038BF04 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA54381221985B90038BF04 /* AddViewController.swift */; };
+		1FB748442221373D00DFBAF3 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB748432221373D00DFBAF3 /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F57E6CD2221250F0072869D /* MainListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListCell.swift; sourceTree = "<group>"; };
 		1F7D718722197CE400F01D6D /* LifeHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7D718A22197CE400F01D6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F7D718C22197CE400F01D6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F7D718C22197CE400F01D6D /* MainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 		1F7D718F22197CE400F01D6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F7D719122197CE500F01D6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F7D719422197CE500F01D6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F7D719622197CE500F01D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA5437D22197F630038BF04 /* DreamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamModel.swift; sourceTree = "<group>"; };
+		1FA54381221985B90038BF04 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		1FB748432221373D00DFBAF3 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		4EA5D4A283CFDEFC00FCE6A8 /* Pods-LifeHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHub.release.xcconfig"; path = "Target Support Files/Pods-LifeHub/Pods-LifeHub.release.xcconfig"; sourceTree = "<group>"; };
+		B7200AA05329F9B184B78F3F /* Pods-LifeHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHub.debug.xcconfig"; path = "Target Support Files/Pods-LifeHub/Pods-LifeHub.debug.xcconfig"; sourceTree = "<group>"; };
+		EB6144C9BFDC02899F95E48F /* Pods_LifeHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1799290E72328F60B4D545E1 /* Pods_LifeHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +53,8 @@
 			children = (
 				1F7D718922197CE400F01D6D /* LifeHub */,
 				1F7D718822197CE400F01D6D /* Products */,
+				5F8BE551A600BAA5DDF5B2A4 /* Pods */,
+				F32F5633810D39BF21D20C64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +69,67 @@
 		1F7D718922197CE400F01D6D /* LifeHub */ = {
 			isa = PBXGroup;
 			children = (
-				1F7D718A22197CE400F01D6D /* AppDelegate.swift */,
-				1F7D718C22197CE400F01D6D /* ViewController.swift */,
-				1F7D718E22197CE400F01D6D /* Main.storyboard */,
-				1F7D719122197CE500F01D6D /* Assets.xcassets */,
 				1F7D719322197CE500F01D6D /* LaunchScreen.storyboard */,
+				1F7D718E22197CE400F01D6D /* Main.storyboard */,
+				1FB748452221374200DFBAF3 /* Style */,
+				1FB748402221343F00DFBAF3 /* Model */,
+				1FB748412221345A00DFBAF3 /* Component */,
+				1FB748422221347F00DFBAF3 /* View */,
+				1F7D719122197CE500F01D6D /* Assets.xcassets */,
 				1F7D719622197CE500F01D6D /* Info.plist */,
 			);
 			path = LifeHub;
+			sourceTree = "<group>";
+		};
+		1FB748402221343F00DFBAF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5437D22197F630038BF04 /* DreamModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FB748412221345A00DFBAF3 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				1F7D718A22197CE400F01D6D /* AppDelegate.swift */,
+				1F57E6CD2221250F0072869D /* MainListCell.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		1FB748422221347F00DFBAF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FA54381221985B90038BF04 /* AddViewController.swift */,
+				1F7D718C22197CE400F01D6D /* MainListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FB748452221374200DFBAF3 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				1FB748432221373D00DFBAF3 /* Gradient.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		5F8BE551A600BAA5DDF5B2A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7200AA05329F9B184B78F3F /* Pods-LifeHub.debug.xcconfig */,
+				4EA5D4A283CFDEFC00FCE6A8 /* Pods-LifeHub.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F32F5633810D39BF21D20C64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB6144C9BFDC02899F95E48F /* Pods_LifeHub.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F7D719922197CE500F01D6D /* Build configuration list for PBXNativeTarget "LifeHub" */;
 			buildPhases = (
+				448CCBA6DFADC88CE08A4732 /* [CP] Check Pods Manifest.lock */,
 				1F7D718322197CE400F01D6D /* Sources */,
 				1F7D718422197CE400F01D6D /* Frameworks */,
 				1F7D718522197CE400F01D6D /* Resources */,
+				D36DD35E6F8F21A8F7E61457 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +200,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		448CCBA6DFADC88CE08A4732 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LifeHub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D36DD35E6F8F21A8F7E61457 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeHub/Pods-LifeHub-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeHub/Pods-LifeHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F7D718322197CE400F01D6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F7D718D22197CE400F01D6D /* ViewController.swift in Sources */,
+				1FA5437E22197F630038BF04 /* DreamModel.swift in Sources */,
+				1F7D718D22197CE400F01D6D /* MainListViewController.swift in Sources */,
+				1FA54382221985B90038BF04 /* AddViewController.swift in Sources */,
 				1F7D718B22197CE400F01D6D /* AppDelegate.swift in Sources */,
+				1F57E6CE2221250F0072869D /* MainListCell.swift in Sources */,
+				1FB748442221373D00DFBAF3 /* Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +403,7 @@
 		};
 		1F7D719A22197CE500F01D6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7200AA05329F9B184B78F3F /* Pods-LifeHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +422,7 @@
 		};
 		1F7D719B22197CE500F01D6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EA5D4A283CFDEFC00FCE6A8 /* Pods-LifeHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
