@@ -7,5 +7,7 @@ class DreamModel: Object {
   @objc dynamic var expense = 0
   @objc dynamic var url = ""
   @objc dynamic var memo = "フガフガ"
+  @objc dynamic var imgURL = ""
+
 
 }

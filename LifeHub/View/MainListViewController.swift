@@ -5,7 +5,7 @@ import RealmSwift
 class MainListViewController: UITableViewController {
   var DreamList: Results<DreamModel>!
   var Dream:DreamModel = DreamModel()
-//  let noImg = UIImage(named:"noimg")!
+
 
 
 
@@ -22,6 +22,8 @@ class MainListViewController: UITableViewController {
 
     //テーブルビューStyle
     self.myTableView.rowHeight =  100
+
+
 
 
     //ナビゲーションバーStyle
@@ -50,7 +52,8 @@ extension MainListViewController {
     let item: DreamModel = self.DreamList[(indexPath as NSIndexPath).row];
 
     ListCell.cellTitle?.text = item.title
-    ListCell.cellMemo?.text = item.memo
+    ListCell.cellMemo?.text = "メモ：" + item.memo
+//    ListCell.cellMemo?.numberOfLines = 2
 
     return ListCell
 

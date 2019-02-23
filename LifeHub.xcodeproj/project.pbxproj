@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1799290E72328F60B4D545E1 /* Pods_LifeHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6144C9BFDC02899F95E48F /* Pods_LifeHub.framework */; };
+		1F1DCD4522218ABA002542AF /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DCD4422218ABA002542AF /* TextFieldExtension.swift */; };
 		1F57E6CE2221250F0072869D /* MainListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F57E6CD2221250F0072869D /* MainListCell.swift */; };
 		1F7D718B22197CE400F01D6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D718A22197CE400F01D6D /* AppDelegate.swift */; };
 		1F7D718D22197CE400F01D6D /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D718C22197CE400F01D6D /* MainListViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F1DCD4422218ABA002542AF /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		1F57E6CD2221250F0072869D /* MainListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListCell.swift; sourceTree = "<group>"; };
 		1F7D718722197CE400F01D6D /* LifeHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7D718A22197CE400F01D6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1DCD4622218EDC002542AF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1F1DCD4422218ABA002542AF /* TextFieldExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1F7D717E22197CE400F01D6D = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +79,7 @@
 		1F7D718922197CE400F01D6D /* LifeHub */ = {
 			isa = PBXGroup;
 			children = (
+				1F1DCD4622218EDC002542AF /* Extension */,
 				1F7D719322197CE500F01D6D /* LaunchScreen.storyboard */,
 				1F7D718E22197CE400F01D6D /* Main.storyboard */,
 				1FB748452221374200DFBAF3 /* Style */,
@@ -257,6 +268,7 @@
 				1FA5437E22197F630038BF04 /* DreamModel.swift in Sources */,
 				1F7D718D22197CE400F01D6D /* MainListViewController.swift in Sources */,
 				1FA54382221985B90038BF04 /* AddViewController.swift in Sources */,
+				1F1DCD4522218ABA002542AF /* TextFieldExtension.swift in Sources */,
 				1F7D718B22197CE400F01D6D /* AppDelegate.swift in Sources */,
 				1F57E6CE2221250F0072869D /* MainListCell.swift in Sources */,
 				1FB748442221373D00DFBAF3 /* Gradient.swift in Sources */,

@@ -13,6 +13,10 @@ class MainListCell: UITableViewCell {
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //テキストフィールド
+
+        print("セルの呼び出し")
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
