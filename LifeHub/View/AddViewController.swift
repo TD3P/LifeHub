@@ -3,15 +3,13 @@ import UIKit
 import RealmSwift
 import os.log
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
   let Dream:DreamModel = DreamModel()
-
-
   @IBOutlet weak var tfTitle: UITextField!
-
   @IBOutlet weak var tfMemo: UITextView!
   @IBOutlet weak var saveButton: UIButton!
-
+  @IBOutlet weak var imgView: UIImageView!
 
 
 
@@ -48,12 +46,50 @@ class AddViewController: UIViewController {
     //Viewに追加
     self.view.addSubview(textView)
 
+  }
+
+
+
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+    // The info dictionary may contain multiple representations of the image. You want to use the original.
+    guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+        fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
     }
+    
+    // Set photoImageView to display the selected image.
+    imgView.image = selectedImage
+    
+    // Dismiss the picker.
+    dismiss(animated: true, completion: nil)
+  }
+
+
 
   @objc func doneButton(){
-      //キーボードを閉じる
-      self.view.endEditing(true)
-    }
+    //キーボードを閉じる
+    self.view.endEditing(true)
+  }
+
+
+
+  @IBAction func selectImageView(_ sender: UITapGestureRecognizer) {
+    // Hide the keyboard.
+    tfTitle.resignFirstResponder()
+    tfMemo.resignFirstResponder()
+
+    // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+    let imagePickerController = UIImagePickerController()
+
+    // Only allow photos to be picked, not taken.
+    imagePickerController.sourceType = .photoLibrary
+
+    // Make sure ViewController is notified when the user picks an image.
+    imagePickerController.delegate = self
+    present(imagePickerController, animated: true, completion: nil)
+    
+  }
+
 
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,8 +98,10 @@ class AddViewController: UIViewController {
       os_log("ダメでした☠️", log: OSLog.default, type: .debug)
       return
     }
+
     Dream.title = self.tfTitle.text ?? "未入力"
     Dream.memo = self.tfMemo.text ?? "未入力"
+    Dream.img = self.imgView.image!.pngData() as NSData?
 
 
     let RealmInstance = try! Realm()

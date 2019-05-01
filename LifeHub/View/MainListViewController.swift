@@ -47,15 +47,19 @@ extension MainListViewController {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let ListCell:MainListCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! MainListCell
+    let listCell:MainListCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! MainListCell
 
     let item: DreamModel = self.DreamList[(indexPath as NSIndexPath).row];
 
-    ListCell.cellTitle?.text = item.title
-    ListCell.cellMemo?.text = "メモ：" + item.memo
-//    ListCell.cellMemo?.numberOfLines = 2
+    listCell.cellTitle?.text = item.title
+    listCell.cellMemo?.text = "メモ：" + item.memo
 
-    return ListCell
+    if let data = item.img {
+      let image: UIImage? = UIImage(data: data as Data)
+      listCell.cellImg?.image = image
+    }
+
+    return listCell
 
   }
 }

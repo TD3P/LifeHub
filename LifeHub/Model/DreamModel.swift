@@ -8,6 +8,5 @@ class DreamModel: Object {
   @objc dynamic var url = ""
   @objc dynamic var memo = "フガフガ"
   @objc dynamic var imgURL = ""
-
-
+  @objc dynamic var img: NSData? = nil
 }
