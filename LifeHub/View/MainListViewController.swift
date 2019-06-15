@@ -1,15 +1,13 @@
 
 import UIKit
 import RealmSwift
+import os.log
 
 class MainListViewController: UITableViewController {
   var DreamList: Results<DreamModel>!
   var Dream:DreamModel = DreamModel()
-
-
-
-
   @IBOutlet var myTableView: UITableView!
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,8 +21,8 @@ class MainListViewController: UITableViewController {
     //テーブルビューStyle
     self.myTableView.rowHeight =  100
 
-
-
+    print("ドリームリストの出力")
+    print(DreamList)
 
     //ナビゲーションバーStyle
     self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 156/255, blue: 195/255, alpha: 1)
@@ -37,7 +35,36 @@ class MainListViewController: UITableViewController {
   }
 
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
+    switch(segue.identifier ?? "") {
+    case "addDream":
+      os_log("新しい夢を追加するぜ！", log: OSLog.default, type: .debug)
+
+    case "showDetail":
+      guard let dreamDetailViewController = segue.destination as? AddViewController else {
+        fatalError("飛べないよ！！　Unexpected destination: \(segue.destination)")
+      }
+
+      guard let selectedCell = sender as? MainListCell else {
+        fatalError("翔べないよ！！　Unexpected sender: \(sender)")
+      }
+
+      guard let indexPath = tableView.indexPath(for: selectedCell) else {
+        fatalError("セルなくね？")
+      }
+
+      let selectedRow = DreamList[indexPath.row]
+      print("呼び出し\(selectedRow)")
+      dreamDetailViewController.Dream = selectedRow
+
+    default:
+      fatalError("遷移できまへんがな")
+    }
+  }
+
 }
+
 
 extension MainListViewController {
 

@@ -3,13 +3,16 @@ import UIKit
 import RealmSwift
 import os.log
 
-class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-  let Dream:DreamModel = DreamModel()
+  var Dream:DreamModel = DreamModel()
+  var addID:String! = nil
+  
   @IBOutlet weak var tfTitle: UITextField!
   @IBOutlet weak var tfMemo: UITextView!
-  @IBOutlet weak var saveButton: UIButton!
   @IBOutlet weak var imgView: UIImageView!
+
+  @IBOutlet weak var saveButton: UIButton!
 
 
 
@@ -46,6 +49,28 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     //Viewに追加
     self.view.addSubview(textView)
 
+    //ナビゲーションバーStyle
+    self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 156/255, blue: 195/255, alpha: 1)
+    self.navigationController?.navigationBar.tintColor = .white
+    self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+
+    //////////UIToolBarの設定////////////////////
+    tfTitle.delegate = self as UITextFieldDelegate
+
+    //既存の編集の時には表示情報を設定
+    if let Dream:DreamModel = Dream {
+      
+      addID = Dream.id
+      tfTitle.text = Dream.title
+      tfMemo.text = Dream.memo
+      if let imgData = Dream.img {
+        let img: UIImage? = UIImage(data: imgData as Data)
+        imgView.image = img
+      }
+
+    }
+
   }
 
 
@@ -65,12 +90,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
   }
 
 
-
   @objc func doneButton(){
     //キーボードを閉じる
     self.view.endEditing(true)
   }
-
 
 
   @IBAction func selectImageView(_ sender: UITapGestureRecognizer) {
@@ -89,7 +112,22 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     present(imagePickerController, animated: true, completion: nil)
     
   }
+  
 
+  @IBAction func cancel(_ sender: UIBarButtonItem) {
+    let isPresentingInAddMealMode = presentingViewController is UINavigationController
+
+    if isPresentingInAddMealMode {
+      dismiss(animated: true, completion: nil)
+      print ("キャンセルしたよー")
+    }
+    else if let owningNavigationController = navigationController{
+      owningNavigationController.popViewController(animated: true)
+    }
+    else {
+      fatalError("The MealViewController is not inside a navigation controller.")
+    }
+  }
 
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,16 +136,38 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
       os_log("ダメでした☠️", log: OSLog.default, type: .debug)
       return
     }
+    
+    // 新規でデータを追加
+    if (addID == nil) {
+      // Dream.id = NSUUID().uuidString
+      Dream.title = self.tfTitle.text ?? "未入力"
+      Dream.memo = self.tfMemo.text ?? "未入力"
+      Dream.img = self.imgView.image!.pngData() as NSData?
 
-    Dream.title = self.tfTitle.text ?? "未入力"
-    Dream.memo = self.tfMemo.text ?? "未入力"
-    Dream.img = self.imgView.image!.pngData() as NSData?
+      let RealmInstance = try! Realm()
 
+      try! RealmInstance.write {
+        RealmInstance.add(Dream)
 
-    let RealmInstance = try! Realm()
-    try! RealmInstance.write {
-      RealmInstance.add(Dream)
+      }
+
+    // 既存データの更新
+    }else{
+
+      let RealmInstance = try! Realm()
+      let Dreams = RealmInstance.objects(DreamModel.self).filter("id == %@", "addID")
+      print("アイヤー！")
+      print(Dreams)
+      Dream.title = self.tfTitle.text ?? "未入力"
+      Dream.memo = self.tfMemo.text ?? "未入力"
+      Dream.img = self.imgView.image!.pngData() as NSData?
+
+      try! RealmInstance.write {
+        RealmInstance.add(Dream, update: true)
+      }
     }
   }
 
 }
+
+

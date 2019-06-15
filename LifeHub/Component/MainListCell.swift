@@ -14,7 +14,6 @@ class MainListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         //テキストフィールド
-
         print("セルの呼び出し")
 
     }
