@@ -161,8 +161,7 @@
                     <navigationItem key="navigationItem" title="夢の追加" largeTitleDisplayMode="always" id="0SV-4V-yK3">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xRQ-IZ-ENb">
                             <connections>
-                                <action selector="cancel:" destination="YJc-Rt-5BE" id="63o-ov-A3d"/>
-                                <segue destination="8LD-Fq-3iQ" kind="unwind" unwindAction="unwindToMainListWithSender:" id="ljB-zH-AoP"/>
+                                <segue destination="8LD-Fq-3iQ" kind="unwind" unwindAction="unwindToMainListWithSender:" id="cUA-Lf-i0P"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -222,6 +221,6 @@
         <image name="noimg" width="259.5" height="231"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3ZM-em-Bf3"/>
+        <segue reference="lh2-23-ZD9"/>
     </inferredMetricsTieBreakers>
 </document>

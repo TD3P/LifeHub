@@ -13,9 +13,6 @@ class MainListViewController: UITableViewController {
     super.viewDidLoad()
     let RealmInstance = try! Realm()
     self.DreamList = RealmInstance.objects(DreamModel.self)
-
-
-
     self.myTableView.reloadData()
 
     //テーブルビューStyle
@@ -34,32 +31,31 @@ class MainListViewController: UITableViewController {
     self.myTableView.reloadData()
   }
 
-
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     switch(segue.identifier ?? "") {
-    case "addDream":
-      os_log("新しい夢を追加するぜ！", log: OSLog.default, type: .debug)
 
-    case "showDetail":
-      guard let dreamDetailViewController = segue.destination as? AddViewController else {
-        fatalError("飛べないよ！！　Unexpected destination: \(segue.destination)")
-      }
+      case "addDream":
+        os_log("新しい夢を追加するぜ！", log: OSLog.default, type: .debug)
 
-      guard let selectedCell = sender as? MainListCell else {
-        fatalError("翔べないよ！！　Unexpected sender: \(sender)")
-      }
+      case "showDetail":
+        guard let dreamDetailViewController = segue.destination as? AddViewController else {
+          fatalError("そんな遷移先、無くないっすか？")
+        }
+        guard let selectedCell = sender as? MainListCell else {
+          fatalError("そんなセル、無くないっすか？")
+        }
+        guard let indexPath = tableView.indexPath(for: selectedCell) else {
+          fatalError("なんか何番目のセルかわかんなかったわ")
+        }
+        let selectedDream = DreamList[indexPath.row]
+        os_log("既存の夢を編集するぜ！", log: OSLog.default, type: .debug)
+        print("呼び出し\(selectedDream)")
+        dreamDetailViewController.Dream = selectedDream
 
-      guard let indexPath = tableView.indexPath(for: selectedCell) else {
-        fatalError("セルなくね？")
-      }
+      default:
+        fatalError("あかん！あかんで！")
 
-      let selectedRow = DreamList[indexPath.row]
-      print("呼び出し\(selectedRow)")
-      dreamDetailViewController.Dream = selectedRow
-
-    default:
-      fatalError("遷移できまへんがな")
     }
   }
 
@@ -78,8 +74,8 @@ extension MainListViewController {
 
     let item: DreamModel = self.DreamList[(indexPath as NSIndexPath).row];
 
-    listCell.cellTitle?.text = item.title
-    listCell.cellMemo?.text = "メモ：" + item.memo
+    listCell.cellTitle?.text = "title：" + item.title
+    listCell.cellMemo?.text = "memo：" + item.memo
 
     if let data = item.img {
       let image: UIImage? = UIImage(data: data as Data)
