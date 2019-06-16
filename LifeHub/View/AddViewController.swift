@@ -8,6 +8,8 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
   //変数
   var Dream:DreamModel = DreamModel()
   var addID:String! = nil
+  var addDate:Date! = nil
+  var datePicker: UIDatePicker = UIDatePicker()
 
   // パーツ
   @IBOutlet weak var tfTitle: UITextField!
@@ -16,6 +18,7 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
     tfMemo.layer.borderWidth = 1.0
     tfMemo.layer.cornerRadius = 5.0
   }}
+  @IBOutlet weak var tfDate: UITextField!
   @IBOutlet weak var imgView: UIImageView!
   @IBOutlet weak var saveButton: UIButton! {didSet{
     saveButton.layer.cornerRadius = 3.0
@@ -61,14 +64,35 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       tfMemo.inputAccessoryView = toolBar
 
     /// MARK:既存データのセット
-      if let prepareDream:DreamModel = Dream {
-        addID = prepareDream.id
-        tfTitle.text = prepareDream.title
-        tfMemo.text = prepareDream.memo
-        if let imgData = prepareDream.img {
+      if !Dream.id.isEmpty {
+        print("既存データあり")
+        addID = Dream.id
+        tfTitle.text = Dream.title
+        tfMemo.text = Dream.memo
+        if let imgData = Dream.img {
           imgView.image = UIImage(data: imgData as Data)
         }
       }
+
+    /// MARK:日付の入力
+      // ピッカー設定
+      datePicker.datePickerMode = UIDatePicker.Mode.date
+      datePicker.timeZone = NSTimeZone.local
+      datePicker.locale = Locale.current
+      tfDate.inputView = datePicker
+
+      // 日付用の決定バーの生成
+      let dateToolBar = UIToolbar()
+      dateToolBar.barStyle = .blackTranslucent
+      dateToolBar.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
+      dateToolBar.sizeToFit()
+      let dateDone = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(AddViewController.dateDone))
+      dateDone.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+      dateToolBar.items = [space, dateDone]
+
+      // インプットビュー設定(紐づいているUITextfieldへ代入)
+      tfDate.inputView = datePicker
+      tfDate.inputAccessoryView = dateToolBar
   }
 
   //写真のアップロード系
@@ -83,15 +107,22 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
   // 画面遷移するときの処理
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
+    guard let Button = sender as? UIButton, Button === saveButton else {
+      print("ただのキャンセル")
+      return
+    }
     
     // realmインスタンス作成
     let RealmInstance = try! Realm()
 
+    dump(addID)
     if (addID == nil) {
       // 新規でデータを追加
       try! RealmInstance.write {
         Dream.title = self.tfTitle.text!
         Dream.memo = self.tfMemo.text!
+        Dream.targetDate = addDate!
+        dump(Dream.targetDate)
         Dream.img = self.imgView.image!.pngData() as NSData?
         RealmInstance.add(Dream)
       }
@@ -104,6 +135,7 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
         print(Dream)
         Dream.title = self.tfTitle.text!
         Dream.memo = self.tfMemo.text!
+        Dream.targetDate = addDate
         Dream.img = self.imgView.image!.pngData() as NSData?
         print("この内容で上書きするでー")
         print(Dream)
@@ -118,6 +150,14 @@ extension AddViewController {
   //キーボードを閉じる
   @objc func doneButton(){
     self.view.endEditing(true)
+  }
+  // 日付の入力完了ボタン
+  @objc func dateDone() {
+    self.view.endEditing(true)
+     let formatter = DateFormatter()
+    formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+    addDate = datePicker.date
+    tfDate.text = "\(formatter.string(from: datePicker.date))"
   }
 }
 
