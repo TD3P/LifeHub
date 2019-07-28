@@ -69,6 +69,14 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
         addID = Dream.id
         tfTitle.text = Dream.title
         tfMemo.text = Dream.memo
+        if let targetDate = Dream.targetDate {
+          let formatter = DateFormatter()
+          formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+          tfDate.text = "\(formatter.string(from: targetDate))"
+          addDate = targetDate
+        }else{
+          os_log("目標日はないよ")
+        }
         if let imgData = Dream.img {
           imgView.image = UIImage(data: imgData as Data)
         }

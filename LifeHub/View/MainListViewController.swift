@@ -82,6 +82,7 @@ extension MainListViewController {
       formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
       listCell.cellTargetDate?.text = "目標日：\(formatter.string(from: targetDate))"
     }else{
+      os_log("目標日はないよ")
       listCell.cellTargetDate?.text = "目標日：未定"
     }
 
