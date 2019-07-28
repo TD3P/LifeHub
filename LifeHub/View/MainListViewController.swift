@@ -77,6 +77,15 @@ extension MainListViewController {
     listCell.cellTitle?.text = "title：" + item.title
     listCell.cellMemo?.text = "memo：" + item.memo
 
+    if let targetDate = item.targetDate {
+      let formatter = DateFormatter()
+      formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+      listCell.cellTargetDate?.text = "目標日：\(formatter.string(from: targetDate))"
+    }else{
+      listCell.cellTargetDate?.text = "目標日：未定"
+    }
+
+
     if let data = item.img {
       let image: UIImage? = UIImage(data: data as Data)
       listCell.cellImg?.image = image

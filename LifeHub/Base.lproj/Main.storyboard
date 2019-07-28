@@ -34,7 +34,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-TO-3tA">
-                                            <rect key="frame" x="112" y="19" width="221" height="34"/>
+                                            <rect key="frame" x="110" y="19" width="223" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="gr8-z0-Hho"/>
                                             </constraints>
@@ -44,18 +44,28 @@
                                             <color key="textColor" red="0.0" green="0.71764705880000002" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHh-O0-F5N">
+                                            <rect key="frame" x="223" y="65" width="110" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.4264441376" green="0.43066635679999998" blue="0.43066635679999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="memo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKT-Vs-sfj">
-                                            <rect key="frame" x="112" y="65" width="221" height="12"/>
+                                            <rect key="frame" x="110" y="65" width="110" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.42644413764042272" green="0.43066635682498133" blue="0.43066635682498133" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Wjb-TO-3tA" firstAttribute="leading" secondItem="7QA-iT-vpe" secondAttribute="trailing" constant="12" id="4au-VJ-MDR"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="lKT-Vs-sfj" secondAttribute="trailing" id="HPk-3S-WIE"/>
+                                        <constraint firstItem="Wjb-TO-3tA" firstAttribute="leading" secondItem="7QA-iT-vpe" secondAttribute="trailing" constant="10" id="4au-VJ-MDR"/>
+                                        <constraint firstItem="yHh-O0-F5N" firstAttribute="width" secondItem="lKT-Vs-sfj" secondAttribute="width" id="JVd-By-gAP"/>
+                                        <constraint firstItem="yHh-O0-F5N" firstAttribute="trailing" secondItem="Wjb-TO-3tA" secondAttribute="trailing" id="Scb-ed-ina"/>
                                         <constraint firstItem="7QA-iT-vpe" firstAttribute="top" secondItem="WfU-5A-5qq" secondAttribute="top" id="Wz5-sY-ZBf"/>
+                                        <constraint firstItem="yHh-O0-F5N" firstAttribute="top" secondItem="Wjb-TO-3tA" secondAttribute="bottom" constant="12" id="Xmk-Hk-KfQ"/>
                                         <constraint firstItem="lKT-Vs-sfj" firstAttribute="top" secondItem="Wjb-TO-3tA" secondAttribute="bottom" constant="12" id="YpC-e0-eZR"/>
+                                        <constraint firstItem="yHh-O0-F5N" firstAttribute="leading" secondItem="lKT-Vs-sfj" secondAttribute="trailing" constant="3" id="dmN-b3-mD3"/>
+                                        <constraint firstItem="lKT-Vs-sfj" firstAttribute="leading" secondItem="7QA-iT-vpe" secondAttribute="trailing" constant="10" id="jMq-FH-td9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Wjb-TO-3tA" secondAttribute="trailing" id="m61-ki-3aa"/>
                                         <constraint firstItem="Wjb-TO-3tA" firstAttribute="top" secondItem="WfU-5A-5qq" secondAttribute="topMargin" constant="8" id="sne-eB-TCt"/>
                                         <constraint firstItem="7QA-iT-vpe" firstAttribute="leading" secondItem="WfU-5A-5qq" secondAttribute="leading" id="td2-ih-BKN"/>
@@ -65,6 +75,7 @@
                                 <connections>
                                     <outlet property="cellImg" destination="7QA-iT-vpe" id="FKZ-C5-Cg9"/>
                                     <outlet property="cellMemo" destination="lKT-Vs-sfj" id="wwU-rH-y8j"/>
+                                    <outlet property="cellTargetDate" destination="yHh-O0-F5N" id="Q5k-mT-hZn"/>
                                     <outlet property="cellTitle" destination="Wjb-TO-3tA" id="8rx-xF-WBh"/>
                                     <segue destination="YJc-Rt-5BE" kind="show" identifier="showDetail" id="3ZM-em-Bf3"/>
                                 </connections>
@@ -141,6 +152,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="実行日" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1d6-Ae-Yuj">
                                 <rect key="frame" x="20" y="203" width="335" height="30"/>
                                 <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -230,6 +242,6 @@
         <image name="noimg" width="259.5" height="231"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lh2-23-ZD9"/>
+        <segue reference="3ZM-em-Bf3"/>
     </inferredMetricsTieBreakers>
 </document>

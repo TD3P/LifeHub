@@ -8,6 +8,7 @@ class MainListCell: UITableViewCell {
   @IBOutlet weak var cellTitle: UILabel!
   @IBOutlet weak var cellMemo: UILabel!
   @IBOutlet weak var cellImg: UIImageView!
+  @IBOutlet weak var cellTargetDate: UILabel!
   
   
   override func awakeFromNib() {
