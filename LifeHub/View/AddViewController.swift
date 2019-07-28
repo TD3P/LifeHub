@@ -19,6 +19,7 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
     tfMemo.layer.cornerRadius = 5.0
   }}
   @IBOutlet weak var tfDate: UITextField!
+  @IBOutlet weak var tfBudget: UITextField!
   @IBOutlet weak var imgView: UIImageView!
   @IBOutlet weak var saveButton: UIButton! {didSet{
     saveButton.layer.cornerRadius = 3.0
@@ -62,6 +63,7 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       //テキストフィールドにtoolbarを配置
       tfTitle.inputAccessoryView = toolBar
       tfMemo.inputAccessoryView = toolBar
+      tfBudget.inputAccessoryView = toolBar
 
     /// MARK:既存データのセット
       if !Dream.id.isEmpty {

@@ -6,7 +6,7 @@ class DreamModel: Object {
   @objc dynamic var title = ""
   @objc dynamic var targetDate: Date? = nil
   @objc dynamic var createdDate: Date = Date()
-  @objc dynamic var expense = 0
+  @objc dynamic var budget = 0
   @objc dynamic var url = ""
   @objc dynamic var memo = ""
   @objc dynamic var imgURL = ""
