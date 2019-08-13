@@ -66,23 +66,29 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       tfBudget.inputAccessoryView = toolBar
 
     /// MARK:既存データのセット
-      if !Dream.id.isEmpty {
-        print("既存データあり")
-        addID = Dream.id
-        tfTitle.text = Dream.title
-        tfMemo.text = Dream.memo
-        if let targetDate = Dream.targetDate {
-          let formatter = DateFormatter()
-          formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
-          tfDate.text = "\(formatter.string(from: targetDate))"
-          addDate = targetDate
-        }else{
-          os_log("目標日はないよ")
-        }
-        if let imgData = Dream.img {
-          imgView.image = UIImage(data: imgData as Data)
-        }
+
+      print("既存データセット")
+      print(Dream)
+      addID = Dream.id
+      tfTitle.text = Dream.title
+      tfMemo.text = Dream.memo
+    if Dream.budget == 0 {
+      tfBudget.text = ""
+    }else{
+      tfBudget.text = String(Dream.budget)
+    }
+      if let targetDate = Dream.targetDate {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        tfDate.text = "\(formatter.string(from: targetDate))"
+        addDate = targetDate
+      }else{
+        os_log("目標日はないよ")
       }
+      if let imgData = Dream.img {
+        imgView.image = UIImage(data: imgData as Data)
+      }
+
 
     /// MARK:日付の入力
       // ピッカー設定
@@ -131,6 +137,7 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       try! RealmInstance.write {
         Dream.title = self.tfTitle.text!
         Dream.memo = self.tfMemo.text!
+        Dream.budget = Int(self.tfBudget.text!) ?? 0
         Dream.targetDate = addDate!
         dump(Dream.targetDate)
         Dream.img = self.imgView.image!.pngData() as NSData?
@@ -140,11 +147,12 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       // 既存データの更新
       try! RealmInstance.write {
         // idから既存データオブジェクトをロード
-        let Dreams = RealmInstance.objects(DreamModel.self).filter("id == %@", "addID")
+//        let Dreams = RealmInstance.objects(DreamModel.self).filter("id == %@", "addID")
         print("既存データの内容を出力")
         print(Dream)
         Dream.title = self.tfTitle.text!
         Dream.memo = self.tfMemo.text!
+        Dream.budget = Int(self.tfBudget.text!) ?? 0
         Dream.targetDate = addDate
         Dream.img = self.imgView.image!.pngData() as NSData?
         print("この内容で上書きするでー")

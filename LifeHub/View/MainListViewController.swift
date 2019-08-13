@@ -76,6 +76,7 @@ extension MainListViewController {
 
     listCell.cellTitle?.text = "title：" + item.title
     listCell.cellMemo?.text = "memo：" + item.memo
+    listCell.cellBudget?.text = "budget：" + String(item.budget)
 
     if let targetDate = item.targetDate {
       let formatter = DateFormatter()
