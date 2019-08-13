@@ -96,4 +96,21 @@ extension MainListViewController {
     return listCell
 
   }
+
+  //スライドして削除
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+
+    if editingStyle == .delete {
+      do{
+        let realm = try Realm()
+        try realm.write {
+          realm.delete(self.DreamList[indexPath.row])
+        }
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+      }catch{
+        os_log("削除できんかったわ")
+      }
+      tableView.reloadData()
+    }
+  }
 }
