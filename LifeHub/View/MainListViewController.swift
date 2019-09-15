@@ -85,6 +85,13 @@ extension MainListViewController {
       let image: UIImage? = UIImage(data: data as Data)
       listCell.cellImg?.image = image
     }
+    listCell.cellDoneFlag = item.doneFlag
+    if listCell.cellDoneFlag {
+      print("完了してるcell")
+      listCell.backgroundColor = UIColor(red: 53/255, green: 156/255, blue: 195/255, alpha: 0.1)
+    } else {
+      listCell.backgroundColor = UIColor.clear
+    }
     return listCell
   }
 
@@ -110,14 +117,22 @@ extension MainListViewController {
       print("完了しました")
       let realm = try! Realm()
       try! realm.write {
-        print("処理前\(self.DreamList[indexPath.row])")
-        self.DreamList[indexPath.row].doneFlag = true
-        print("処理後\(self.DreamList[indexPath.row])")
+        if self.DreamList[indexPath.row].doneFlag {
+          print("処理前\(self.DreamList[indexPath.row])")
+          self.DreamList[indexPath.row].doneFlag = false
+          print("処理後\(self.DreamList[indexPath.row])")
+
+        }else{
+          print("処理前\(self.DreamList[indexPath.row])")
+          self.DreamList[indexPath.row].doneFlag = true
+          print("処理後\(self.DreamList[indexPath.row])")
+        }
         realm.add(self.DreamList[indexPath.row], update: true)
+        self.myTableView.reloadData()
       }
       completionHandler(true)
     }
-    action.backgroundColor = UIColor.blue
+    action.backgroundColor = UIColor(red: 53/255, green: 156/255, blue: 195/255, alpha: 1)
     return action
   }
 

@@ -10,6 +10,7 @@ class MainListCell: UITableViewCell {
   @IBOutlet weak var cellImg: UIImageView!
   @IBOutlet weak var cellTargetDate: UILabel!
   @IBOutlet weak var cellBudget: UILabel!
+  var cellDoneFlag = false
 
   
   override func awakeFromNib() {
