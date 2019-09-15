@@ -11,6 +11,8 @@ class DreamModel: Object {
   @objc dynamic var memo = ""
   @objc dynamic var imgURL = ""
   @objc dynamic var img: NSData? = nil
+  @objc dynamic var doneFlag = false
+    
 
   override static func primaryKey() -> String? {
     return "id"

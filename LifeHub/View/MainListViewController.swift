@@ -58,7 +58,6 @@ class MainListViewController: UITableViewController {
 
     }
   }
-
 }
 
 
@@ -69,15 +68,11 @@ extension MainListViewController {
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
     let listCell:MainListCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! MainListCell
-
     let item: DreamModel = self.DreamList[(indexPath as NSIndexPath).row];
-
     listCell.cellTitle?.text = "title：" + item.title
     listCell.cellMemo?.text = "memo：" + item.memo
     listCell.cellBudget?.text = "budget：" + String(item.budget)
-
     if let targetDate = item.targetDate {
       let formatter = DateFormatter()
       formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
@@ -86,31 +81,62 @@ extension MainListViewController {
       os_log("目標日はないよ")
       listCell.cellTargetDate?.text = "目標日：未定"
     }
-
-
     if let data = item.img {
       let image: UIImage? = UIImage(data: data as Data)
       listCell.cellImg?.image = image
     }
-
     return listCell
-
   }
 
   //スライドして削除
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+  //  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+  //
+  //    if editingStyle == .delete {
+  //      do{
+  //        let realm = try Realm()
+  //        try realm.write {
+  //          realm.delete(self.DreamList[indexPath.row])
+  //        }
+  //        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+  //      }catch{
+  //        os_log("削除できんかったわ")
+  //      }
+  //      tableView.reloadData()
+  //    }
+  //  }
 
-    if editingStyle == .delete {
-      do{
-        let realm = try Realm()
-        try realm.write {
-          realm.delete(self.DreamList[indexPath.row])
-        }
-        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-      }catch{
-        os_log("削除できんかったわ")
+  func doneAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+    let action = UIContextualAction(style: .normal, title: "DONE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+      print("完了しました")
+      let realm = try! Realm()
+      try! realm.write {
+        print("処理前\(self.DreamList[indexPath.row])")
+        self.DreamList[indexPath.row].doneFlag = true
+        print("処理後\(self.DreamList[indexPath.row])")
+        realm.add(self.DreamList[indexPath.row], update: true)
       }
-      tableView.reloadData()
+      completionHandler(true)
     }
+    action.backgroundColor = UIColor.blue
+    return action
+  }
+
+  func deleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+    let action = UIContextualAction(style: .destructive, title: "Delete") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+      print("消しました")
+      let realm = try! Realm()
+      try! realm.write {
+        realm.delete(self.DreamList[indexPath.row])
+      }
+      completionHandler(true)
+    }
+    return action
+  }
+    
+  @available(iOS 11.0, *)
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let doneAction = self.doneAction(forRowAtIndexPath: indexPath)
+    let deleteAction = self.deleteAction(forRowAtIndexPath: indexPath)
+    return UISwipeActionsConfiguration(actions: [doneAction, deleteAction])
   }
 }
