@@ -161,7 +161,6 @@ class AddViewController: UIViewController, UITextFieldDelegate,  UIImagePickerCo
       }
     }
   }
-
 }
 
 extension AddViewController {
