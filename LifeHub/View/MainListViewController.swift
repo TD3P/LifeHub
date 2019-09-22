@@ -154,4 +154,5 @@ extension MainListViewController {
     let deleteAction = self.deleteAction(forRowAtIndexPath: indexPath)
     return UISwipeActionsConfiguration(actions: [doneAction, deleteAction])
   }
+  
 }
