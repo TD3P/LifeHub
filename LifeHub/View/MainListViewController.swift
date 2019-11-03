@@ -19,7 +19,7 @@ class MainListViewController: UITableViewController {
     self.myTableView.rowHeight =  100
 
     print("ドリームリストの出力")
-    print(DreamList)
+    print(DreamList!)
 
     //ナビゲーションバーStyle
     self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 156/255, blue: 195/255, alpha: 1)
